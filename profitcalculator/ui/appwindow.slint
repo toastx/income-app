@@ -1,0 +1,56 @@
+import { Button, VerticalBox , LineEdit} from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+
+    in property <string> results :"";
+    callback show-income(string);
+
+
+    background: #313e50;
+    GridLayout {
+        padding: 50px;
+        spacing: 25px;
+        Row {
+            Text {
+                text: " Enter you income ";
+                horizontal-alignment: center;
+                font-size: 24px;
+                font-weight: 900;
+                color: #ffffff;
+            }
+        }
+
+        Row {
+            income := LineEdit {
+                font-size: 24px;
+                placeholder-text: "Enter you number";
+                height:35px;
+            }
+        }
+
+        Row {
+            Button {
+                text: "calculate";
+                primary: true;
+                height: 35px;
+                clicked => {show-income(income.text)}
+            }
+        }
+
+        Row{
+            VerticalBox {
+                Rectangle {
+                    height: 100px;
+                    background: #f2f2f2;
+                    Text{
+                        color: black;
+                        font-size:16px;
+                        font-weight: 300;
+                        text: root.results;
+                    }
+
+                }
+            }
+        }
+    }
+}
